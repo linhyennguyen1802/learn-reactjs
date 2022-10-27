@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>React basic</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+</head>
+<body>
+    <script>
+        //DOM
+        // Thành phần nhỏ nhất của DOM là node
+        const h1DOM = document.createElement('h1')
+        h1DOM.title = 'hello'
+        h1DOM.className = 'heading'
+        h1DOM.innerText = 'hello guys!'
+        document.body.appendChild(h1DOM)
+
+        //REACT
+        //Thành phần nhỏ nhất của React là React element
+        // Chưa thể renderr ra đc vì nó chưa có ReactDOM
+        // Bản thân React không bao gồm phần render
+        // React.createElement(type, props, children)
+        const h1React = React.createElement('h1',{
+            title:'Hello',
+            className:'heading'
+        }, 'Hello guys!')
+        // console.log(h1DOM) htmldom
+        // console.log(h1React) trả về object 
+        // property !== props 
+        // tuy React tách props với children ra nhưng React nó vẫn xem children là props
+
+        //EX 01 
+        //DOM
+        const ulDOM = document.createElement('ul')
+        ulDOM.id = "ul-nhe"
+        ulDOM.style = 'color: red; font-size:30px'
+        const liDOM01 = document.createElement('li')
+        liDOM01.innerText = 'JavaScipt'
+        const liDOM02 = document.createElement('li')
+        liDOM02.innerText = 'Python'
+        ulDOM.appendChild(liDOM01)
+        ulDOM.appendChild(liDOM02)
+        document.body.appendChild(ulDOM)
+
+        //REACT
+        // Vì có 02 children nên troong props->children sẽ là array
+        const ulReact = React.createElement(
+            'ul',
+            {
+                id:'ul-id',
+                style: 'color: red; font-size:30px'
+            },
+            React.createElement('li',null,'Javascript'),
+            React.createElement('li',null,'Python'),
+        )
+        
+
+        //EX 02 
+        //DOM
+        const divDOM = document.createElement('div')
+        divDOM.className="post-item"
+        const h2DOM = document.createElement('h2')
+        h2DOM.title="Học React tại F8"
+        h2DOM.innerText="Học ReactJS"
+        const pDOM = document.createElement('p')
+        pDOM.innerText="ReactJs từ cơ bản tới nâng cao"
+        divDOM.appendChild(h2DOM)
+        divDOM.appendChild(pDOM)
+        document.body.appendChild(divDOM)
+
+        //REACT
+        const divDOMReact = React.creatElement(
+            'div',
+            {
+                className:'post-item'
+            },
+            React.createElement('h2',{title:'Học React tại F8'},'Học ReactJS'),
+            React.createElement('p',null,'Học ReactJS từ cơ bản đến nâng cao')
+        )
+    </script>
+
+    
+</body>
+</html>

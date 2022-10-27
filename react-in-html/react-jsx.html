@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!--
+        JSX - JavaScript HTML
+        JSX không thể truyền thẳng cho ReactDOM đc 
+            vì React cần nhận là nhận React element
+        Cần bước trung gian là Babel 
+        Babel là một thư viện Javascript 
+            chuyên dùng để phân tích cú pháp và chuyển đổi cú pháp
+        Dùng chuyển JS ES6 trở lên sang ES5 để hỗ trợ các trình duyệt cũ
+
+        Khi muốn viết code JSX cùng code HTML thì phải đặt đoạn code JSX trong cặp {}
+        Thuộc tính style trong JSX phải nhận giá trị là object.
+
+        const reactCourse = "ReactF8"
+        const ul = <ul> 
+            <li style={{color: "red"}}> Python </li>
+            <li style="color:blue">{reactCourse}</li>
+        </ul>
+    -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const courses = [
+            {
+                name:'HTML,CSS',
+            },
+            {
+                name:'Responsive',
+            },
+            {
+                name:'ReactJS'
+            }
+        ]
+        const jsx = (
+            <ul>
+                {courses.map(course =>
+                    <li>{course.name}</li>
+                )}
+            </ul>
+        )
+
+        const Form = {
+            Input(){
+                return <input/>
+            },
+            Checkbox(){
+                return <input type="checkbox"/>
+            }
+        }
+
+        function App(){
+            const type = 'Input'
+
+            const Component = Form[type]
+
+            //bỏ Form[type] vào JSX ko đc, lỗi syntax
+            return(
+                <div id="wrapper">
+                    <Component/>
+                </div>
+            )
+        }
+
+        ReactDOM.render([App], document.getElementById('root'))
+
+    </script>
+    
+</body>
+</html>
